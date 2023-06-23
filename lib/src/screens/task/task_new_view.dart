@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:test_1/src/models/task_model.dart';
+import 'package:the_lords_todo_apps/src/models/task_model.dart';
 
 class TaskNewView extends StatefulWidget {
   const TaskNewView({

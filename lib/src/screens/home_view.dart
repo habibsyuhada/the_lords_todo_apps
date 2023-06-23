@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:test_1/src/screens/task/task_new_view.dart';
-import 'package:test_1/src/screens/task/task_view.dart';
+import 'package:the_lords_todo_apps/src/screens/task/task_new_view.dart';
+import 'package:the_lords_todo_apps/src/screens/task/task_view.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({

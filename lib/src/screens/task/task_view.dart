@@ -1,9 +1,6 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:test_1/src/models/task_model.dart';
 
 class TaskView extends StatefulWidget {
   const TaskView({
