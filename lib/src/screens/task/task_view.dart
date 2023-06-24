@@ -1,6 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:the_lords_todo_apps/src/screens/task/task_new_view.dart';
 
 class TaskView extends StatefulWidget {
   const TaskView({
@@ -17,10 +19,11 @@ class _TaskViewState extends State<TaskView> {
     return ValueListenableBuilder<Box>(
       valueListenable: Hive.box('tasks').listenable(),
       builder: (context, boxs, widget) {
-        if (boxs.values.isEmpty)
+        if (boxs.values.isEmpty) {
           return Center(
             child: Text("No Taks"),
           );
+        }
         return Container(
           decoration: BoxDecoration(
             color: Colors.white,
@@ -29,21 +32,53 @@ class _TaskViewState extends State<TaskView> {
             itemCount: boxs.values.length,
             itemBuilder: (context, index) {
               var box = boxs.getAt(index);
-              return Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.grey.shade100,
+              return Card(
+                color: Colors.blue.shade100,
+                child: IntrinsicHeight(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      InkWell(
+                        // splashColor: ,
+                        onTap: () {
+                          box.isDone = !box.isDone;
+                          boxs.put(box.key, box);
+                        },
+                        child: Container(
+                            padding: EdgeInsets.symmetric(horizontal: 10),
+                            margin: const EdgeInsets.all(0),
+                            decoration: BoxDecoration(
+                              color: Colors.blue.shade200,
+                              shape: BoxShape.rectangle,
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                bottomLeft: Radius.circular(4.0),
+                              ),
+                            ),
+                            child: Icon(box.isDone
+                                ? Icons.check_box
+                                : Icons.check_box_outline_blank)),
+                      ),
+                      // const SizedBox(width: 10),
+                      Expanded(
+                        child: ListTile(
+                          contentPadding: EdgeInsets.all(5),
+                          title: Text(box.taskTitle),
+                          subtitle: Text(box.taskDescription),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    TaskNewView(key_box: box.key),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                      //const Icon(Icons.arrow_forward_ios, color: Colors.blue),
+                    ],
                   ),
-                  borderRadius: BorderRadius.all(Radius.circular(5)),
-                  color: Colors.grey[50],
-                ),
-                margin: EdgeInsets.only(top: 10, left: 10, right: 10),
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child: Row(
-                  children: [
-                    Text(box.taskTitle),
-                    Text(box.taskTitle),
-                  ],
                 ),
               );
             },

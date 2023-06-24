@@ -5,13 +5,20 @@ part 'task_model.g.dart';
 @HiveType(typeId: 0)
 class TaskModel {
   @HiveField(0)
-  String taskTitle;
+  String key;
 
   @HiveField(1)
-  String taskDescrption;
+  String taskTitle;
 
-  @HiveField(2, defaultValue: false)
+  @HiveField(2)
+  String taskDescription;
+
+  @HiveField(3)
   bool isDone;
 
-  TaskModel(this.taskTitle, this.taskDescrption, this.isDone);
+  @HiveField(4)
+  List<String> checklist;
+
+  TaskModel(this.key, this.taskTitle, this.taskDescription, this.isDone,
+      this.checklist);
 }

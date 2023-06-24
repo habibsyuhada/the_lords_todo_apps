@@ -1,44 +1,38 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'task_model.dart';
+part of 'task_checklist_model.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class TaskModelAdapter extends TypeAdapter<TaskModel> {
+class TaskChecklistModelAdapter extends TypeAdapter<TaskChecklistModel> {
   @override
-  final int typeId = 0;
+  final int typeId = 1;
 
   @override
-  TaskModel read(BinaryReader reader) {
+  TaskChecklistModel read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return TaskModel(
+    return TaskChecklistModel(
       fields[0] as String,
       fields[1] as String,
-      fields[2] as String,
-      fields[3] as bool,
-      (fields[4] as List).cast<String>(),
+      fields[2] as bool,
     );
   }
 
   @override
-  void write(BinaryWriter writer, TaskModel obj) {
+  void write(BinaryWriter writer, TaskChecklistModel obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(3)
       ..writeByte(0)
       ..write(obj.key)
       ..writeByte(1)
       ..write(obj.taskTitle)
       ..writeByte(2)
-      ..write(obj.taskDescription)
-      ..writeByte(3)
-      ..write(obj.isDone)
-      ..writeByte(4)
-      ..write(obj.checklist);
+      ..write(obj.isDone);
   }
 
   @override
@@ -47,7 +41,7 @@ class TaskModelAdapter extends TypeAdapter<TaskModel> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is TaskModelAdapter &&
+      other is TaskChecklistModelAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
